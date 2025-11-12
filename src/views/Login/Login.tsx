@@ -2,13 +2,17 @@ import React, { useCallback } from 'react';
 import type { FormProps } from 'antd';
 import { Button, Form, Input } from 'antd';
 import styles from './Login.module.less';
+import { useNavigate } from 'react-router-dom';
+import { DEFAULT_HOME_PATH } from '@/constants/routes';
 type LoginFormType = {
     username?: string;
     password?: string;
 };
-const Login: React.FC<FormProps> = () => {
+const LoginView: React.FC<FormProps> = () => {
+    const navigate = useNavigate();
     const onFinish = useCallback((values: LoginFormType) => {
         console.log('Success:', values);
+        navigate(DEFAULT_HOME_PATH);
     }, []);
     return (
         <div className={styles.loginForm}>
@@ -41,4 +45,4 @@ const Login: React.FC<FormProps> = () => {
 
     );
 }
-export default Login;
+export default LoginView;

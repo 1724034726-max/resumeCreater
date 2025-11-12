@@ -1,27 +1,28 @@
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
-import Layout from '../Layout'
-import { AppRoutes, DEFAULT_HOME_PATH } from '../contants/routes'
+
+import { APP_ROUTES, DEFAULT_HOME_PATH } from '../constants/routes'
 
 const Login = lazy(() => import('../views/Login'))
 const Home = lazy(() => import('../views/Home'))
+const Layout = lazy(() => import('../Layout'))
 
 const routes: RouteObject[] = [
   {
-    path: AppRoutes.LOGIN,
+    path: APP_ROUTES.LOGIN,
     element: <Login />,
   },
   {
-    path: AppRoutes.LAYOUT,
+    path: APP_ROUTES.LAYOUT,
     element: <Layout />,
     children: [
       {
         index: true,
-        element: <Navigate to={AppRoutes.HOME} replace />,
+        element: <Navigate to={APP_ROUTES.HOME} replace />,
       },
       {
-        path: AppRoutes.HOME,
+        path: APP_ROUTES.HOME,
         element: <Home />,
       },
     ],
