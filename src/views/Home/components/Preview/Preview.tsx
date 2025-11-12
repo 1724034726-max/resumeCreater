@@ -1,6 +1,7 @@
-const PreviewView = () => {
+import styles from "./Preview.module.less";
+const PreviewView: React.FC = () => {
     return (
-        <div>
+        <div className={styles.previewContainer}>
             <h1>PreviewView</h1>
         </div>
     );

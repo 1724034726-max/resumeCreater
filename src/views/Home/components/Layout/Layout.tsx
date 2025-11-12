@@ -1,6 +1,7 @@
-const LayoutView = () => {
+import styles from "./Layout.module.less";
+const LayoutView: React.FC = () => {
     return (
-        <div>
+        <div className={styles.layoutContainer}>
             <h1>Layout</h1>
         </div>
     );
