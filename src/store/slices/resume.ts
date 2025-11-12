@@ -5,17 +5,17 @@
  */
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-const initialState = {
-    resume: null,
+const initialState: ResumeState = {
+    menuSections: [],
 }
 const resumeSlice = createSlice({
     name: 'resume',
     initialState,
     reducers: {
-        setResume: (state, action: PayloadAction<any>) => {
-            state.resume = action.payload;
+        setMenuSections: (state, action: PayloadAction<ResumeState['menuSections']>) => {
+            state.menuSections = action.payload;
         },
     },
-})
-export const { setResume } = resumeSlice.actions;
+});
+export const { setMenuSections } = resumeSlice.actions;
 export default resumeSlice.reducer;

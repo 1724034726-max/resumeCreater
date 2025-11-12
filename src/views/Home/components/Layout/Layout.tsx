@@ -1,8 +1,9 @@
 import styles from "./Layout.module.less";
+import { LayoutComponent } from "./components";
 const LayoutView: React.FC = () => {
     return (
         <div className={styles.layoutContainer}>
-            <h1>Layout</h1>
+            <LayoutComponent />
         </div>
     );
 }
