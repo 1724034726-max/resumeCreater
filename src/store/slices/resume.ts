@@ -228,8 +228,11 @@ const resumeSlice = createSlice({
     setCurrentModule: (state, action: PayloadAction<string>) => {
       state.currentModule = action.payload;
     },
+    addResumeModule: (state, action: PayloadAction<any>) => {
+      state.resume.push(action.payload);
+    },
   },
 });
 
-export const { setMenuSections, setCurrentModule } = resumeSlice.actions;
+export const { setMenuSections, setCurrentModule, addResumeModule } = resumeSlice.actions;
 export default resumeSlice.reducer;

@@ -11,4 +11,4 @@ type StoreState = ReturnType<typeof rootReducer>;
 type StoreDispatch = typeof store.dispatch;
 export const useAppDispatch: () => StoreDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<StoreState> = useSelector;
-export const selectResumeStore = (state: StoreState): ResumeState => state.resume;
+export const useSelectResumeStore = (state: StoreState): ResumeState => state.resume;

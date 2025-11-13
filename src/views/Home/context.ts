@@ -5,13 +5,17 @@
  */
 
 import * as editStore from "@/store/slices/resume";
-import { useAppDispatch, useAppSelector, selectResumeStore } from "@/hooks/redux";
+import {
+  useAppDispatch,
+  useAppSelector,
+  useSelectResumeStore,
+} from "@/hooks/redux";
 import { createSelector } from "@reduxjs/toolkit";
 /**
  * 拿单个简历所有配置
  */
 export function useGetResume() {
-  return useAppSelector(selectResumeStore);
+  return useAppSelector(useSelectResumeStore);
 }
 
 /**
@@ -19,10 +23,19 @@ export function useGetResume() {
  */
 
 export const useGetResumeModule = () => {
+  //因为外部改了resume仓库除了resume字段的其他字段
+  //也会触发selectResumeStore的selector重新执行
+  //但resume字段引用不变,所以不会重新执行selectResumeList的selector
+
+  //拿resume仓库的state的resume字段
   const selectResumeList = createSelector(
-    [selectResumeStore],
+    [useSelectResumeStore],
     (resumeState) => resumeState.resume
   );
+  /**
+   * 拿selectResumeList的selector返回的resume字段数组的map(item => item.cnType)
+   * 只要selectResumeList的selector返回的数组引用不变,selector就从缓存拿结果,不会重新执行
+   */
   const selectResumeModules = createSelector(
     [selectResumeList],
     (resumeItems) =>
@@ -30,6 +43,8 @@ export const useGetResumeModule = () => {
         title: item.cnType,
       }))
   );
+  //useAppSelector发现selectResumeModules的selector返回的数组引用不变
+  //就会从缓存拿结果,所在的组件就不会重新渲染
   return useAppSelector(selectResumeModules);
 };
 
@@ -50,4 +65,13 @@ export function useUpdateResumeModule(
   module: string
 ) {
   dispatch(editStore.setCurrentModule(module));
+}
+/**
+ * 添加简历模块
+ */
+export function useAddResumeModule(
+  dispatch: ReturnType<typeof useAppDispatch>,
+  module: any
+) {
+  dispatch(editStore.addResumeModule(module));
 }

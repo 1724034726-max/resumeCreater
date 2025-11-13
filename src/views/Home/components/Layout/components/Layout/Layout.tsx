@@ -1,19 +1,21 @@
 import styles from "./Layout.module.less";
 import LayoutModuleCard from "@/components/LayoutModuleCard";
 import { useState, useCallback } from "react";
-import { Button, Modal, Form, Input, message } from "antd";
+import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useGetResumeModule } from "@/views/Home/context";
+import NiceModal from "@ebay/nice-modal-react";
+import { buildResumeModule } from "@/views/Home/helper";
+import { useAddResumeModule } from "@/views/Home/context";
+import { useAppDispatch } from "@/hooks/redux";
 const LayoutComponent: React.FC = () => {
-  console.error('我重新运行了')
   const moduleList = useGetResumeModule();
+  const dispatch = useAppDispatch();
   const [selectedModule, setSelectedModule] = useState<string>("");
   //当前被拖拽的模块的索引
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   //当前拖拽到哪个模块上
-  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [form] = Form.useForm();
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null)
   const handleDragStart = useCallback((_e: React.DragEvent, index: number) => {
     setDraggedIndex(index);
   }, []);
@@ -38,30 +40,11 @@ const LayoutComponent: React.FC = () => {
     setDragOverIndex(null);
   }, [draggedIndex, dragOverIndex]);
 
-  const handleAddModule = useCallback(() => {
-    setIsModalOpen(true);
-  }, []);
-
-  const handleModalOk = useCallback(() => {
-    form.validateFields().then((values) => {
-      const { title } = values;
-      // 检查是否已存在相同标题的模块
-      if (moduleList.some((item) => item.title === title)) {
-        message.warning("该模块标题已存在，请使用其他标题");
-        return;
-      }
-      // setModuleList((prevList) => [...prevList, { title, context: context || "" }]);
-      message.success("模块添加成功");
-      form.resetFields();
-      setIsModalOpen(false);
-    });
-  }, [form, moduleList]);
-
-  const handleModalCancel = useCallback(() => {
-    form.resetFields();
-    setIsModalOpen(false);
-  }, [form]);
-
+  const handleAddModule = useCallback(async () => {
+    const formContent = await NiceModal.show("AddResumeModuleModal");
+    const newModule = buildResumeModule(formContent);
+    useAddResumeModule(dispatch, newModule);
+  }, [dispatch]);
   return (
     <div className={styles.layoutComponent}>
       <div className={styles.header}>
@@ -92,31 +75,6 @@ const LayoutComponent: React.FC = () => {
           />
         ))}
       </div>
-      <Modal
-        title="新增模块"
-        open={isModalOpen}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
-        okText="确定"
-        cancelText="取消"
-      >
-        <Form form={form} layout="vertical">
-          <Form.Item
-            name="title"
-            label="模块标题"
-            rules={[{ required: true, message: "请输入模块标题" }]}
-          >
-            <Input placeholder="请输入模块标题" />
-          </Form.Item>
-          <Form.Item name="context" label="模块内容">
-            <Input.TextArea
-              placeholder="请输入模块内容（可选）"
-              rows={4}
-              autoSize={{ maxRows: 4, minRows: 4 }}
-            />
-          </Form.Item>
-        </Form>
-      </Modal>
     </div>
   );
 };
