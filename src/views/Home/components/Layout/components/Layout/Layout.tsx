@@ -3,11 +3,10 @@ import LayoutModuleCard from "@/components/LayoutModuleCard";
 import { useState, useCallback } from "react";
 import { Button, Modal, Form, Input, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { useGeResumetModule } from "@/views/Home/context";
 const LayoutComponent: React.FC = () => {
+  const moduleList = useGeResumetModule();
   const [selectedModule, setSelectedModule] = useState<string>("");
-  const [moduleList, setModuleList] = useState<
-    { title: string; context: string }[]
-  >([]);
   //当前被拖拽的模块的索引
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   //当前拖拽到哪个模块上
@@ -27,12 +26,12 @@ const LayoutComponent: React.FC = () => {
 
   const handleDragEnd = useCallback(() => {
     if (draggedIndex !== null && dragOverIndex !== null && draggedIndex !== dragOverIndex) {
-      setModuleList((prevList) => {
-        const newList = [...prevList];
-        const [draggedItem] = newList.splice(draggedIndex, 1);
-        newList.splice(dragOverIndex, 0, draggedItem);
-        return newList;
-      });
+      // setModuleList((prevList) => {
+      //   const newList = [...prevList];
+      //   const [draggedItem] = newList.splice(draggedIndex, 1);
+      //   newList.splice(dragOverIndex, 0, draggedItem);
+      //   return newList;
+      // });
     }
     setDraggedIndex(null);
     setDragOverIndex(null);
@@ -50,7 +49,7 @@ const LayoutComponent: React.FC = () => {
         message.warning("该模块标题已存在，请使用其他标题");
         return;
       }
-      setModuleList((prevList) => [...prevList, { title, context: context || "" }]);
+      // setModuleList((prevList) => [...prevList, { title, context: context || "" }]);
       message.success("模块添加成功");
       form.resetFields();
       setIsModalOpen(false);
@@ -80,7 +79,6 @@ const LayoutComponent: React.FC = () => {
           <LayoutModuleCard
             key={item.title}
             title={item.title}
-            context={item.context}
             selected={selectedModule === item.title}
             onSelect={() => setSelectedModule(item.title)}
             index={index}
@@ -89,6 +87,7 @@ const LayoutComponent: React.FC = () => {
             onDragEnd={handleDragEnd}
             isDragging={draggedIndex === index}
             dragOverIndex={dragOverIndex}
+            draggable={false}
           />
         ))}
       </div>

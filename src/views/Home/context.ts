@@ -5,11 +5,21 @@
  */
 
 import * as editStore from "@/store/slices/resume";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-
+import { useAppDispatch, useAppSelector, selectResume } from "@/hooks/redux";
+import { createSelector } from "@reduxjs/toolkit";
 export function useGetResume() {
   return useAppSelector((state) => state.resume);
 }
+
+export const useGeResumetModule = () => {
+  const selectResumeModules = createSelector([selectResume], (resumeState) =>
+    resumeState.resume.map((item) => ({
+      title: item.cnType,
+    }))
+  );
+  return useAppSelector(selectResumeModules);
+};
+
 export function updateResume(
   dispatch: ReturnType<typeof useAppDispatch>,
   resume: ResumeState

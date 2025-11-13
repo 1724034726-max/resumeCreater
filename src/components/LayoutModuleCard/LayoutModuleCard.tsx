@@ -8,7 +8,6 @@ import styles from "./LayoutModuleCard.module.less";
 import { useCallback, useRef } from "react";
 interface LayoutModuleCardProps {
   title: string;
-  context: string;
   icon?: React.ReactNode;
   draggable?: boolean;
   onHideOrShow?: () => void;
