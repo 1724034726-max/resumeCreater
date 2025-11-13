@@ -3,11 +3,13 @@ import LayoutModuleCard from "@/components/LayoutModuleCard";
 import { useState, useCallback } from "react";
 import { Button, Modal, Form, Input, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { useGetResume, updateResume } from "@/views/Home/context";
 const LayoutComponent: React.FC = () => {
   const [selectedModule, setSelectedModule] = useState<string>("");
   const [moduleList, setModuleList] = useState<
     { title: string; context: string }[]
   >([]);
+  console.log("useGetResume", useGetResume());
   //当前被拖拽的模块的索引
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   //当前拖拽到哪个模块上
