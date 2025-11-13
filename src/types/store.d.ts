@@ -15,3 +15,7 @@ interface InfoItem {
   canCustom: boolean;
   content: ContentItem[];
 }
+interface ResumeState {
+  resume: InfoItem[];
+  currentModule: string;
+}

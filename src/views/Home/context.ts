@@ -12,7 +12,7 @@ export function useGetResume() {
 }
 export function updateResume(
   dispatch: ReturnType<typeof useAppDispatch>,
-  resume: InfoItem[]
+  resume: ResumeState
 ) {
   dispatch(editStore.setMenuSections(resume));
 }
