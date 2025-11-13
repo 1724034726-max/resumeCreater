@@ -1,6 +1,6 @@
 import axios from "axios";
 const request = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL: "http://192.168.1.191:4000/api",
   timeout: 10000,
 });
 request.interceptors.request.use((config) => {

@@ -8,7 +8,9 @@ const LayoutComponent: React.FC = () => {
   const [moduleList, setModuleList] = useState<
     { title: string; context: string }[]
   >([]);
+  //当前被拖拽的模块的索引
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  //当前拖拽到哪个模块上
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
@@ -111,6 +113,7 @@ const LayoutComponent: React.FC = () => {
             <Input.TextArea
               placeholder="请输入模块内容（可选）"
               rows={4}
+              autoSize={{ maxRows: 4, minRows: 4 }}
             />
           </Form.Item>
         </Form>

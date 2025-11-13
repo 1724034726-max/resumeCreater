@@ -104,11 +104,9 @@ const LayoutModuleCard: React.FC<LayoutModuleCardProps> = ({
 
   return (
     <div
-      className={`${styles.layoutModuleCard} ${
-        selected ? styles.selected : ""
-      } ${isDragging ? styles.dragging : ""} ${
-        isDragOver ? styles.dragOver : ""
-      }`}
+      className={`${styles.layoutModuleCard} ${selected ? styles.selected : ""
+        } ${isDragging ? styles.dragging : ""} ${isDragOver ? styles.dragOver : ""
+        }`}
       onClick={handleClick}
       draggable={draggable}
       onDragStart={handleDragStartInternal}
