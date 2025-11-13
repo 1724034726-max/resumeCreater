@@ -13,3 +13,9 @@ export function buildResumeModule(module: any) {
     content: [],
   };
 }
+export function changeModuleOrder(moduleList: any[], draggedIndex: number, dragOverIndex: number) {
+  const newModuleList = [...moduleList];
+  const [draggedItem] = newModuleList.splice(draggedIndex, 1);
+  newModuleList.splice(dragOverIndex, 0, draggedItem);
+  return newModuleList;
+}

@@ -228,11 +228,28 @@ const resumeSlice = createSlice({
     setCurrentModule: (state, action: PayloadAction<string>) => {
       state.currentModule = action.payload;
     },
-    addResumeModule: (state, action: PayloadAction<any>) => {
+    addResumeModule: (state, action: PayloadAction<InfoItem>) => {
       state.resume.push(action.payload);
     },
+    changeModuleOrder: (
+      state,
+      action: PayloadAction<Array<{ key: string; title: string }>>
+    ) => {
+      const orderMap = new Map(action.payload.map(({ key }, index) => [key, index]));
+      if (orderMap.size !== action.payload.length) {
+        return;
+      }
+      state.resume.sort((a, b) => {
+        const indexA = orderMap.get(a.key);
+        const indexB = orderMap.get(b.key);
+        if (indexA === undefined || indexB === undefined) {
+          return 0;
+        }
+        return indexA - indexB;
+      });
+    },  
   },
 });
 
-export const { setMenuSections, setCurrentModule, addResumeModule } = resumeSlice.actions;
+export const { setMenuSections, setCurrentModule, addResumeModule, changeModuleOrder } = resumeSlice.actions;
 export default resumeSlice.reducer;

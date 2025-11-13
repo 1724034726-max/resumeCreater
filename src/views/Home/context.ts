@@ -41,6 +41,7 @@ export const useGetResumeModule = () => {
     (resumeItems) =>
       resumeItems.map((item) => ({
         title: item.cnType,
+        key: item.key,
       }))
   );
   //useAppSelector发现selectResumeModules的selector返回的数组引用不变
@@ -74,4 +75,13 @@ export function useAddResumeModule(
   module: any
 ) {
   dispatch(editStore.addResumeModule(module));
+}
+/**
+ * 修改模块顺序
+ */
+export function useChangeModuleOrder(
+  dispatch: ReturnType<typeof useAppDispatch>,
+  moduleList: any[]
+) {
+  dispatch(editStore.changeModuleOrder(moduleList));
 }

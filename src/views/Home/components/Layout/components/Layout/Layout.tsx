@@ -3,9 +3,9 @@ import LayoutModuleCard from "@/components/LayoutModuleCard";
 import { useState, useCallback } from "react";
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { useGetResumeModule } from "@/views/Home/context";
+import { useChangeModuleOrder, useGetResumeModule } from "@/views/Home/context";
 import NiceModal from "@ebay/nice-modal-react";
-import { buildResumeModule } from "@/views/Home/helper";
+import { buildResumeModule, changeModuleOrder } from "@/views/Home/helper";
 import { useAddResumeModule } from "@/views/Home/context";
 import { useAppDispatch } from "@/hooks/redux";
 const LayoutComponent: React.FC = () => {
@@ -29,12 +29,8 @@ const LayoutComponent: React.FC = () => {
 
   const handleDragEnd = useCallback(() => {
     if (draggedIndex !== null && dragOverIndex !== null && draggedIndex !== dragOverIndex) {
-      // setModuleList((prevList) => {
-      //   const newList = [...prevList];
-      //   const [draggedItem] = newList.splice(draggedIndex, 1);
-      //   newList.splice(dragOverIndex, 0, draggedItem);
-      //   return newList;
-      // });
+      const newModuleList = changeModuleOrder(moduleList, draggedIndex, dragOverIndex);
+      useChangeModuleOrder(dispatch, newModuleList);
     }
     setDraggedIndex(null);
     setDragOverIndex(null);
@@ -71,7 +67,6 @@ const LayoutComponent: React.FC = () => {
             onDragEnd={handleDragEnd}
             isDragging={draggedIndex === index}
             dragOverIndex={dragOverIndex}
-            draggable={false}
           />
         ))}
       </div>
