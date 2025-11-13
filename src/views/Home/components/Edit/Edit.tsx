@@ -1,4 +1,5 @@
 import styles from "./Edit.module.less";
+import { memo } from "react";
 const EditView: React.FC = () => {
     return (
         <div className={styles.editContainer} >
@@ -6,4 +7,4 @@ const EditView: React.FC = () => {
         </div>
     );
 }
-export default EditView;
+export default memo(EditView);

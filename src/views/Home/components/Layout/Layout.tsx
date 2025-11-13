@@ -1,5 +1,6 @@
 import styles from "./Layout.module.less";
 import { LayoutComponent } from "./components";
+import { memo } from "react";
 const LayoutView: React.FC = () => {
     return (
         <div className={styles.layoutContainer}>
@@ -7,4 +8,4 @@ const LayoutView: React.FC = () => {
         </div>
     );
 }
-export default LayoutView;
+export default memo(LayoutView);
