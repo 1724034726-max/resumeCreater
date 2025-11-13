@@ -1,6 +1,6 @@
 import axios from "axios";
 const request = axios.create({
-  baseURL: "http://192.168.1.191:4000/api",
+  baseURL: import.meta.env.VITE_BASE_URL,
   timeout: 10000,
 });
 request.interceptors.request.use((config) => {
