@@ -3,9 +3,10 @@ import LayoutModuleCard from "@/components/LayoutModuleCard";
 import { useState, useCallback } from "react";
 import { Button, Modal, Form, Input, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { useGeResumetModule } from "@/views/Home/context";
+import { useGetResumeModule } from "@/views/Home/context";
 const LayoutComponent: React.FC = () => {
-  const moduleList = useGeResumetModule();
+  console.error('我重新运行了')
+  const moduleList = useGetResumeModule();
   const [selectedModule, setSelectedModule] = useState<string>("");
   //当前被拖拽的模块的索引
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
@@ -43,7 +44,7 @@ const LayoutComponent: React.FC = () => {
 
   const handleModalOk = useCallback(() => {
     form.validateFields().then((values) => {
-      const { title, context } = values;
+      const { title } = values;
       // 检查是否已存在相同标题的模块
       if (moduleList.some((item) => item.title === title)) {
         message.warning("该模块标题已存在，请使用其他标题");
