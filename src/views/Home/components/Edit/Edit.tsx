@@ -16,7 +16,7 @@ const EditView: React.FC = () => {
                     <EditOutlined />
                 </div>
             </div>
-            <EditBoxComponent dataList={currentModuleDetail!.content} />
+            <EditBoxComponent data={currentModuleDetail!} />
         </div>
     );
 }

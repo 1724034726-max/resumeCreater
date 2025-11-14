@@ -1,7 +1,4 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 10px;
     background-color: #fff;
     border-radius: 10px;
@@ -10,6 +7,12 @@
     &:hover {
         border: 1px solid rgb(0, 0, 0);
     }
+}
+.mainContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 .draggable {
     height: 100%;
@@ -34,7 +37,7 @@
     gap: 10px;
     width: 50px;
 }
-.btn-detail {
+.btnDetail {
     width: 50px;
     height: 100%;
     display: flex;
@@ -42,6 +45,22 @@
     justify-content: center;
     cursor: pointer;
 }
-.btn-detail-icon {
+.btnDetailIcon {
     color: gray;
+    transition: transform 0.3s ease;
+}
+.rotated {
+    transform: rotate(180deg);
+}
+.detailFormWrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+    overflow: hidden;
+}
+.detailFormWrapper.expanded {
+    grid-template-rows: 1fr;
+}
+.detailForm {
+    min-height: 0;
 }
