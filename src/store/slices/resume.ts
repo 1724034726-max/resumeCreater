@@ -216,7 +216,7 @@ const initialState: ResumeState = {
       ],
     },
   ],
-  currentModule: "personal",
+  currentModule: "project",
 };
 const resumeSlice = createSlice({
   name: "resume",

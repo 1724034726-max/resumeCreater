@@ -1,11 +1,15 @@
 import { DragOutlined, EyeOutlined, DeleteOutlined, DownOutlined } from "@ant-design/icons";
 import styles from "./EditModuleDetailCard.module.less";
-const EditModuleDetailCardComponent: React.FC = () => {
+import { memo } from "react";
+interface EditModuleDetailCardComponentProps {
+    data: ContentItem;
+}
+const EditModuleDetailCardComponent: React.FC<EditModuleDetailCardComponentProps> = ({ data }) => {
     return (
         <div className={styles.container} >
             <div className={styles.draggable}><DragOutlined /></div>
             <div className={styles.content} >
-                某某公司
+                {data[Object.keys(data)[0]].cnType}
             </div>
             <div className={styles.actions} >
                 <div className={styles.action} ><EyeOutlined /></div>
@@ -15,4 +19,4 @@ const EditModuleDetailCardComponent: React.FC = () => {
         </div>
     );
 }
-export default EditModuleDetailCardComponent;
+export default memo(EditModuleDetailCardComponent);

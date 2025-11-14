@@ -48,6 +48,30 @@ export const useGetResumeModule = () => {
   //就会从缓存拿结果,所在的组件就不会重新渲染
   return useAppSelector(selectResumeModules);
 };
+/**
+ * 拿当前选中模块
+ */
+export const useGetCurrentModule = () => {
+  const selectCurrentModule = createSelector(
+    [useSelectResumeStore],
+    (resumeState) => resumeState.currentModule
+  );
+  return useAppSelector(selectCurrentModule);
+};
+/**
+ * 根据模块key拿模块详细信息
+ */
+export const useGetCurrentModuleDetail = (currentModule: string) => {
+  const selectResumeList = createSelector(
+    [useSelectResumeStore],
+    (resumeState) => resumeState.resume
+  );
+  const selectResumeModuleDetail = createSelector(
+    [selectResumeList],
+    (resumeItems) => resumeItems.find((item) => item.key === currentModule)
+  );
+  return useAppSelector(selectResumeModuleDetail);
+};
 
 /**
  * 更新简历所有配置
