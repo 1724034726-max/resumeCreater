@@ -1,4 +1,5 @@
 import styles from "./Preview.module.less";
+import { memo } from "react";
 const PreviewView: React.FC = () => {
     return (
         <div className={styles.previewContainer}>
@@ -6,4 +7,4 @@ const PreviewView: React.FC = () => {
         </div>
     );
 }
-export default PreviewView;
+export default memo(PreviewView);
