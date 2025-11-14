@@ -11,7 +11,6 @@ import { useAppDispatch } from "@/hooks/redux";
 const LayoutComponent: React.FC = () => {
   const moduleList = useGetResumeModule();
   const dispatch = useAppDispatch();
-  const [selectedModule, setSelectedModule] = useState<string>("");
   //当前被拖拽的模块的索引
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   //当前拖拽到哪个模块上
@@ -57,16 +56,13 @@ const LayoutComponent: React.FC = () => {
       <div className={styles.moduleList}>
         {moduleList.map((item, index) => (
           <LayoutModuleCard
-            key={item.title}
+            key={item.key}
+            moduleKey={item.key}
             title={item.title}
-            selected={selectedModule === item.title}
-            onSelect={() => setSelectedModule(item.title)}
             index={index}
             onDragStart={handleDragStart}
             onDragOver={handleDragOver}
             onDragEnd={handleDragEnd}
-            isDragging={draggedIndex === index}
-            dragOverIndex={dragOverIndex}
           />
         ))}
       </div>

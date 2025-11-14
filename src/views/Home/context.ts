@@ -49,7 +49,7 @@ export const useGetResumeModule = () => {
   return useAppSelector(selectResumeModules);
 };
 /**
- * 拿当前选中模块
+ * 拿当前选中模块key
  */
 export const useGetCurrentModule = () => {
   const selectCurrentModule = createSelector(

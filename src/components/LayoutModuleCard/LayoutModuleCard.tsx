@@ -5,37 +5,34 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import styles from "./LayoutModuleCard.module.less";
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
+import { useUpdateResumeModule } from "@/views/Home/context";
+import { useAppDispatch } from "@/hooks/redux";
 interface LayoutModuleCardProps {
+  moduleKey: string;
   title: string;
   icon?: React.ReactNode;
   draggable?: boolean;
   onHideOrShow?: () => void;
   onDelete?: () => void;
-  selected?: boolean;
-  onSelect?: () => void;
   index?: number;
   onDragStart?: (e: React.DragEvent, index: number) => void;
   onDragOver?: (e: React.DragEvent, index: number) => void;
   onDragEnd?: () => void;
-  isDragging?: boolean;
-  dragOverIndex?: number | null;
 }
 const LayoutModuleCard: React.FC<LayoutModuleCardProps> = ({
+  moduleKey,
   title,
   icon = <PlusOutlined />,
   draggable = true,
   onHideOrShow,
   onDelete,
-  selected,
-  onSelect,
   index,
   onDragStart,
   onDragOver,
   onDragEnd,
-  isDragging,
-  dragOverIndex,
 }) => {
+  const dispatch = useAppDispatch();
   const _onHideOrShow = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
@@ -73,39 +70,23 @@ const LayoutModuleCard: React.FC<LayoutModuleCardProps> = ({
     [draggable, index, onDragOver]
   );
 
-  const isDragOver = dragOverIndex === index && !isDragging;
-  const isDraggingRef = useRef(false);
-
-  const handleClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (isDraggingRef.current) {
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
-      onSelect?.();
-    },
-    [onSelect]
-  );
-
   const handleDragStartInternal = useCallback(
     (e: React.DragEvent) => {
-      isDraggingRef.current = true;
       handleDragStart(e);
     },
     [handleDragStart]
   );
 
   const handleDragEndInternal = useCallback(() => {
-    isDraggingRef.current = false;
     onDragEnd?.();
   }, [onDragEnd]);
+  const handleClick = useCallback(() => {
+    useUpdateResumeModule(dispatch, moduleKey);
+  }, [moduleKey, dispatch]);
 
   return (
     <div
-      className={`${styles.layoutModuleCard} ${selected ? styles.selected : ""
-        } ${isDragging ? styles.dragging : ""} ${isDragOver ? styles.dragOver : ""
-        }`}
+      className={`${styles.layoutModuleCard}`}
       onClick={handleClick}
       draggable={draggable}
       onDragStart={handleDragStartInternal}
