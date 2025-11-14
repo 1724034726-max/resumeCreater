@@ -9,7 +9,7 @@ import {
   useAppDispatch,
   useAppSelector,
   useSelectResumeStore,
-} from "@/hooks/redux";
+} from "@/hooks/useRedux";
 import { createSelector } from "@reduxjs/toolkit";
 /**
  * 拿单个简历所有配置

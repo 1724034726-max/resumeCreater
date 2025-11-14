@@ -5,9 +5,9 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import styles from "./LayoutModuleCard.module.less";
-import { useCallback } from "react";
-import { useUpdateResumeModule } from "@/views/Home/context";
-import { useAppDispatch } from "@/hooks/redux";
+import React, { useCallback } from "react";
+import { useUpdateResumeModule, useGetCurrentModule } from "@/views/Home/context";
+import { useAppDispatch } from "@/hooks/useRedux";
 interface LayoutModuleCardProps {
   moduleKey: string;
   title: string;
@@ -33,6 +33,7 @@ const LayoutModuleCard: React.FC<LayoutModuleCardProps> = ({
   onDragEnd,
 }) => {
   const dispatch = useAppDispatch();
+  const currentModuleKey = useGetCurrentModule();
   const _onHideOrShow = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
@@ -58,7 +59,6 @@ const LayoutModuleCard: React.FC<LayoutModuleCardProps> = ({
     },
     [draggable, index, onDragStart]
   );
-
   const handleDragOver = useCallback(
     (e: React.DragEvent) => {
       if (draggable && index !== undefined && onDragOver) {
@@ -86,7 +86,7 @@ const LayoutModuleCard: React.FC<LayoutModuleCardProps> = ({
 
   return (
     <div
-      className={`${styles.layoutModuleCard}`}
+      className={`${styles.layoutModuleCard} ${currentModuleKey === moduleKey ? styles.selected : ""}`}
       onClick={handleClick}
       draggable={draggable}
       onDragStart={handleDragStartInternal}
@@ -109,4 +109,4 @@ const LayoutModuleCard: React.FC<LayoutModuleCardProps> = ({
     </div>
   );
 };
-export default LayoutModuleCard;
+export default React.memo(LayoutModuleCard);

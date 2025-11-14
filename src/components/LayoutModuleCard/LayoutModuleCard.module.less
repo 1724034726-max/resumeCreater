@@ -12,13 +12,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover {
-    // transform: scale(1.01);
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-  }
-  .selected{
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     transform: scale(1.01);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #000;
   }
+
   &.dragging {
     opacity: 0.5;
     cursor: grabbing;
@@ -27,6 +25,11 @@
     border-top: 2px solid #000;
     margin-top: 12px;
   }
+}
+.selected {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.01);
+  border: 1px solid #000;
 }
 .draggable {
   height: 100%;
