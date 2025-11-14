@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import styles from "./Edit.module.less";
 import { memo } from "react";
 import { EditOutlined } from "@ant-design/icons";
@@ -8,10 +7,10 @@ const EditView: React.FC = () => {
         <div className={styles.editContainer} >
             <div className={styles.editHeader} >
                 <div className={styles.editTitle} >
-                   实习经验
+                    实习经验
                 </div>
                 <div className={styles.editButton} >
-                    <Button type="primary" icon={<EditOutlined />} size="small" />
+                    <EditOutlined />
                 </div>
             </div>
             <EditBoxComponent />
