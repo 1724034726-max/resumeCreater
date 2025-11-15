@@ -13,27 +13,21 @@ const initialState: ResumeState = {
       init: true,
       canDelete: false,
       canCustom: false,
-      content: [
-        {
+      content: [{ tips: {
           name: { cnType: "姓名", enType: "input", innerText: "张三" },
-          phone: { cnType: "电话", enType: "input", innerText: "13800138000" },
-          email: {
-            cnType: "邮箱",
-            enType: "input",
-            innerText: "zhangsan@example.com",
-          },
-          address: {
-            cnType: "地址",
-            enType: "input",
-            innerText: "北京市朝阳区",
-          },
-          github: {
-            cnType: "GitHub",
-            enType: "input",
-            innerText: "github.com/zhangsan",
-          },
+            phone: {
+              cnType: "电话",
+              enType: "input",
+              innerText: "13800138000",
+            },
+            github: {
+              cnType: "GitHub",
+              enType: "input",
+              innerText: "github.com/zhangsan",
+            },
         },
-      ],
+        rechContext: "",
+      }],
     },
     {
       key: "education",
@@ -43,46 +37,52 @@ const initialState: ResumeState = {
       canCustom: true,
       content: [
         {
-          school: {
-            cnType: "学校名称",
-            enType: "input",
-            innerText: "北京大学",
+          tips: {
+            school: {
+              cnType: "学校名称",
+              enType: "input",
+              innerText: "北京大学",
+            },
+            major: {
+              cnType: "专业",
+              enType: "input",
+              innerText: "计算机科学与技术",
+            },
+            degree: { cnType: "学历", enType: "input", innerText: "本科" },
+            startTime: {
+              cnType: "开始时间",
+              enType: "date",
+              innerText: "2016-09",
+            },
+            endTime: {
+              cnType: "结束时间",
+              enType: "date",
+              innerText: "2020-06",
+            },
           },
-          major: {
-            cnType: "专业",
-            enType: "input",
-            innerText: "计算机科学与技术",
-          },
-          degree: { cnType: "学历", enType: "input", innerText: "本科" },
-          startTime: {
-            cnType: "开始时间",
-            enType: "date",
-            innerText: "2016-09",
-          },
-          endTime: {
-            cnType: "结束时间",
-            enType: "date",
-            innerText: "2020-06",
-          },
+          rechContext: "",
         },
         {
-          school: {
-            cnType: "学校名称",
-            enType: "input",
-            innerText: "清华大学",
+          tips: {
+            school: {
+              cnType: "学校名称",
+              enType: "input",
+              innerText: "清华大学",
+            },
+            major: { cnType: "专业", enType: "input", innerText: "软件工程" },
+            degree: { cnType: "学历", enType: "input", innerText: "硕士" },
+            startTime: {
+              cnType: "开始时间",
+              enType: "date",
+              innerText: "2020-09",
+            },
+            endTime: {
+              cnType: "结束时间",
+              enType: "date",
+              innerText: "2023-06",
+            },
           },
-          major: { cnType: "专业", enType: "input", innerText: "软件工程" },
-          degree: { cnType: "学历", enType: "input", innerText: "硕士" },
-          startTime: {
-            cnType: "开始时间",
-            enType: "date",
-            innerText: "2020-09",
-          },
-          endTime: {
-            cnType: "结束时间",
-            enType: "date",
-            innerText: "2023-06",
-          },
+          rechContext: "",
         },
       ],
     },
@@ -94,33 +94,36 @@ const initialState: ResumeState = {
       canCustom: true,
       content: [
         {
-          company: {
-            cnType: "公司名称",
-            enType: "input",
-            innerText: "阿里巴巴",
+          tips: {
+            company: {
+              cnType: "公司名称",
+              enType: "input",
+              innerText: "阿里巴巴",
+            },
+            position: {
+              cnType: "职位",
+              enType: "input",
+              innerText: "高级前端工程师",
+            },
+            department: {
+              cnType: "部门",
+              enType: "input",
+              innerText: "技术部",
+            },
+            startTime: {
+              cnType: "开始时间",
+              enType: "date",
+              innerText: "2023-07",
+            },
+            endTime: { cnType: "结束时间", enType: "date", innerText: "至今" },
+            description: {
+              cnType: "工作描述",
+              enType: "input",
+              innerText:
+                "负责公司核心产品的前端架构设计与开发，使用 React、TypeScript、微前端等技术栈，带领团队完成多个重要项目",
+            },
           },
-          position: {
-            cnType: "职位",
-            enType: "input",
-            innerText: "高级前端工程师",
-          },
-          department: {
-            cnType: "部门",
-            enType: "input",
-            innerText: "技术部",
-          },
-          startTime: {
-            cnType: "开始时间",
-            enType: "date",
-            innerText: "2023-07",
-          },
-          endTime: { cnType: "结束时间", enType: "date", innerText: "至今" },
-          description: {
-            cnType: "工作描述",
-            enType: "input",
-            innerText:
-              "负责公司核心产品的前端架构设计与开发，使用 React、TypeScript、微前端等技术栈，带领团队完成多个重要项目",
-          },
+          rechContext: "",
         },
       ],
     },
@@ -130,41 +133,41 @@ const initialState: ResumeState = {
       init: false,
       canDelete: true,
       canCustom: true,
-      content: [
-        {
-          projectName: {
-            cnType: "项目名称",
-            enType: "input",
-            innerText: "电商平台重构",
+      content: [{ tips: {
+            projectName: {
+              cnType: "项目名称",
+              enType: "input",
+              innerText: "电商平台重构",
+            },
+            role: {
+              cnType: "担任角色",
+              enType: "input",
+              innerText: "前端负责人",
+            },
+            startTime: {
+              cnType: "开始时间",
+              enType: "input",
+              innerText: "2024-01",
+            },
+            endTime: {
+              cnType: "结束时间",
+              enType: "input",
+              innerText: "2024-06",
+            },
+            techStack: {
+              cnType: "技术栈",
+              enType: "input",
+              innerText: "React, TypeScript, Vite, Micro-Frontend",
+            },
+            description: {
+              cnType: "项目描述",
+              enType: "input",
+              innerText:
+                "主导完成了公司电商平台的微前端架构升级，将单体应用拆分为多个微应用，提升了40%的页面加载速度和开发效率",
+            },
           },
-          role: {
-            cnType: "担任角色",
-            enType: "input",
-            innerText: "前端负责人",
-          },
-          startTime: {
-            cnType: "开始时间",
-            enType: "input",
-            innerText: "2024-01",
-          },
-          endTime: {
-            cnType: "结束时间",
-            enType: "input",
-            innerText: "2024-06",
-          },
-          techStack: {
-            cnType: "技术栈",
-            enType: "input",
-            innerText: "React, TypeScript, Vite, Micro-Frontend",
-          },
-          description: {
-            cnType: "项目描述",
-            enType: "input",
-            innerText:
-              "主导完成了公司电商平台的微前端架构升级，将单体应用拆分为多个微应用，提升了40%的页面加载速度和开发效率",
-          },
-        },
-      ],
+        rechContext: "",
+      }],
     },
     {
       key: "skills",
@@ -174,48 +177,54 @@ const initialState: ResumeState = {
       canCustom: true,
       content: [
         {
-          category: {
-            cnType: "技能类别1",
-            enType: "input",
-            innerText: "前端框架",
+          tips: {
+            category: {
+              cnType: "技能类别",
+              enType: "input",
+              innerText: "前端框架",
+            },
+            skills: {
+              cnType: "技能列表",
+              enType: "input",
+              innerText: "React, Vue.js, TypeScript",
+            },
+            proficiency: {
+              cnType: "熟练程度",
+              enType: "input",
+              innerText: "精通",
+            },
+            description: {
+              cnType: "详细描述",
+              enType: "input",
+              innerText: "深入理解框架原理，有大型项目实战经验",
+            },
           },
-          skills: {
-            cnType: "技能列表",
-            enType: "input",
-            innerText: "React, Vue.js, TypeScript",
-          },
-          proficiency: {
-            cnType: "熟练程度",
-            enType: "input",
-            innerText: "精通",
-          },
-          description: {
-            cnType: "详细描述",
-            enType: "input",
-            innerText: "深入理解框架原理，有大型项目实战经验",
-          },
+          rechContext: "我啥也不会",
         },
         {
-          category: {
-            cnType: "技能类别2",
-            enType: "input",
-            innerText: "工程化",
+          tips: {
+            category: {
+              cnType: "技能类别",
+              enType: "input",
+              innerText: "工程化",
+            },
+            skills: {
+              cnType: "技能列表",
+              enType: "input",
+              innerText: "Webpack, Vite, Docker, CI/CD",
+            },
+            proficiency: {
+              cnType: "熟练程度",
+              enType: "input",
+              innerText: "熟练",
+            },
+            description: {
+              cnType: "详细描述",
+              enType: "input",
+              innerText: "熟悉前端工程化体系搭建和性能优化",
+            },
           },
-          skills: {
-            cnType: "技能列表",
-            enType: "input",
-            innerText: "Webpack, Vite, Docker, CI/CD",
-          },
-          proficiency: {
-            cnType: "熟练程度",
-            enType: "input",
-            innerText: "熟练",
-          },
-          description: {
-            cnType: "详细描述",
-            enType: "input",
-            innerText: "熟悉前端工程化体系搭建和性能优化",
-          },
+          rechContext: "我啥都会",
         },
       ],
     },
@@ -256,10 +265,15 @@ const resumeSlice = createSlice({
     },
     changeModuleDetailOrder: (
       state,
-      action: PayloadAction<ContentItem[]>
+      action: PayloadAction<Array<{ tips: ContentItem; rechContext: string }>>
     ) => {
-      const currentModule = state.resume.find((module) => module.key === state.currentModule);
-      if (currentModule && action.payload.length === currentModule.content.length) {
+      const currentModule = state.resume.find(
+        (module) => module.key === state.currentModule
+      );
+      if (
+        currentModule &&
+        action.payload.length === currentModule.content.length
+      ) {
         currentModule.content = action.payload;
       }
     },

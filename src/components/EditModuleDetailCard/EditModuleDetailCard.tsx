@@ -2,17 +2,18 @@ import { DragOutlined, EyeOutlined, DeleteOutlined, DownOutlined } from "@ant-de
 import styles from "./EditModuleDetailCard.module.less";
 import { memo, useCallback, useState } from "react";
 import DetailFormComponent from "./components/DetailForm/DetailForm";
-
+import DetailContextComponent from "./components/DetailContext/DetailContext";
 interface EditModuleDetailCardComponentProps {
     data: ContentItem;
     draggable?: boolean;
     index?: number;
+    content?: string;
     onDragStart?: (e: React.DragEvent, index: number) => void;
     onDragOver?: (e: React.DragEvent, index: number) => void;
     onDragEnd?: () => void;
 }
 
-const EditModuleDetailCard: React.FC<EditModuleDetailCardComponentProps> = ({ data, draggable = true, index, onDragStart, onDragOver, onDragEnd }) => {
+const EditModuleDetailCard: React.FC<EditModuleDetailCardComponentProps> = ({ data, draggable = true, index, content, onDragStart, onDragOver, onDragEnd }) => {
     const [expanded, setExpanded] = useState<boolean>(false);
     const toggleExpand = useCallback(() => {
         setExpanded(!expanded);
@@ -65,8 +66,9 @@ const EditModuleDetailCard: React.FC<EditModuleDetailCardComponentProps> = ({ da
                 </div>
             </div>
             <div className={`${styles.detailFormWrapper} ${expanded ? styles.expanded : ''}`}>
-                <div className={styles.detailForm}>
+                <div className={styles.detailFormWrapperContent}>
                     <DetailFormComponent data={data} />
+                    <DetailContextComponent data={content ?? ''} />
                 </div>
             </div>
         </div>

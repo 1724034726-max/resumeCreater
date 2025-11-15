@@ -13,30 +13,34 @@ interface EditBoxComponentProps {
 }
 
 const EditBoxComponent: React.FC<EditBoxComponentProps> = ({ data }) => {
-    const { content: dataList, cnType } = data;
+    const { cnType, content } = data;
     const dispatch = useAppDispatch();
+    
     const _handleDragEnd = useCallback((fromIndex: number, toIndex: number) => {
-        const newDataList = changeOrder(dataList, fromIndex, toIndex);
-        useChangeModuleDetailOrder(dispatch, newDataList);
-    }, [dataList, dispatch]);
+        const newContent = changeOrder(content, fromIndex, toIndex);
+        useChangeModuleDetailOrder(dispatch, newContent);
+    }, [content, dispatch]);
     
     const { handleDragStart, handleDragOver, handleDragEnd } = useDrag({
         onDragEnd: _handleDragEnd,
     });
+    
     return (
-        <div className={styles.editBoxContainer} >
+        <div className={styles.editBoxContainer}>
             <div className={styles.editBoxContent}>
-                {dataList.map((item, index) => (
+                {content.map((item, index) => (
                     <EditModuleDetailCard
                         key={`${cnType}-${index}`}
-                        data={item}
+                        data={item.tips}
                         index={index}
+                        content={item.rechContext}
                         onDragStart={handleDragStart}
                         onDragOver={handleDragOver}
                         onDragEnd={handleDragEnd}
-                    />))}
+                    />
+                ))}
             </div>
-            <div className={styles.editBoxButton} >
+            <div className={styles.editBoxButton}>
                 <Button type="primary" block size="large"><PlusOutlined />添加{cnType}</Button>
             </div>
         </div>

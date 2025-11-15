@@ -114,7 +114,7 @@ export function useChangeModuleOrder(
  */
 export function useChangeModuleDetailOrder(
   dispatch: ReturnType<typeof useAppDispatch>,
-  moduleDetail: any[]
+  moduleDetail: Array<{ tips: ContentItem; rechContext: string }>
 ) {
   dispatch(editStore.changeModuleDetailOrder(moduleDetail));
 }

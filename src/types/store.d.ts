@@ -13,7 +13,10 @@ interface InfoItem {
   init: boolean;
   canDelete: boolean;
   canCustom: boolean;
-  content: ContentItem[];
+  content: Array<{
+    tips: ContentItem;
+    rechContext: string;
+  }>;
 }
 interface ResumeState {
   resume: InfoItem[];
