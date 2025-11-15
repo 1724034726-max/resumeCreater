@@ -1,4 +1,27 @@
-.rech-context{
+.rech-context {
     margin-top: 20px;
     padding: 10px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    outline: none;
+    
+    &:focus {
+        outline: none;
+        border: none;
+    }
+    
+    ul, ol {
+        margin: 0;
+        padding-left: 20px;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+    
+    li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+    }
 }

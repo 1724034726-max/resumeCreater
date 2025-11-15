@@ -4,7 +4,7 @@ import Middleware from "@/utils/middleware";
 // import sanitizeHTML from "@/utils/sanitizeHTML";
 
 interface RechContextProps {
-    data?: string;  // 改为 initialData，避免后续更新
+    data?: string; 
     middleware: Middleware;
 }
 
