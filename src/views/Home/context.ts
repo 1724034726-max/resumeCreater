@@ -109,3 +109,12 @@ export function useChangeModuleOrder(
 ) {
   dispatch(editStore.changeModuleOrder(moduleList));
 }
+/**
+ * 修改模块详情内容顺序
+ */
+export function useChangeModuleDetailOrder(
+  dispatch: ReturnType<typeof useAppDispatch>,
+  moduleDetail: any[]
+) {
+  dispatch(editStore.changeModuleDetailOrder(moduleDetail));
+}

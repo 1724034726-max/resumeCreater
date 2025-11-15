@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useChangeModuleOrder, useGetResumeModule } from "@/views/Home/context";
 import NiceModal from "@ebay/nice-modal-react";
-import { buildResumeModule, changeModuleOrder } from "@/views/Home/helper";
+import { buildResumeModule, changeOrder } from "@/views/Home/helper";
 import { useAddResumeModule } from "@/views/Home/context";
 import { useAppDispatch } from "@/hooks/useRedux";
 import useDrag from "@/hooks/useDrag";
@@ -13,7 +13,7 @@ const LayoutComponent: React.FC = () => {
   const moduleList = useGetResumeModule();
   const dispatch = useAppDispatch();
   const _handleDragEnd = useCallback((fromIndex: number, toIndex: number) => {
-    const newModuleList = changeModuleOrder(moduleList, fromIndex, toIndex);
+    const newModuleList = changeOrder(moduleList, fromIndex, toIndex);
     useChangeModuleOrder(dispatch, newModuleList);
   }, [dispatch, moduleList]);
   const { handleDragStart, handleDragOver, handleDragEnd } = useDrag({

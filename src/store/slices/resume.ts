@@ -175,7 +175,7 @@ const initialState: ResumeState = {
       content: [
         {
           category: {
-            cnType: "技能类别",
+            cnType: "技能类别1",
             enType: "input",
             innerText: "前端框架",
           },
@@ -197,7 +197,7 @@ const initialState: ResumeState = {
         },
         {
           category: {
-            cnType: "技能类别",
+            cnType: "技能类别2",
             enType: "input",
             innerText: "工程化",
           },
@@ -220,7 +220,7 @@ const initialState: ResumeState = {
       ],
     },
   ],
-  currentModule: "project",
+  currentModule: "skills",
 };
 const resumeSlice = createSlice({
   name: "resume",
@@ -254,6 +254,15 @@ const resumeSlice = createSlice({
         return indexA - indexB;
       });
     },
+    changeModuleDetailOrder: (
+      state,
+      action: PayloadAction<ContentItem[]>
+    ) => {
+      const currentModule = state.resume.find((module) => module.key === state.currentModule);
+      if (currentModule && action.payload.length === currentModule.content.length) {
+        currentModule.content = action.payload;
+      }
+    },
   },
 });
 
@@ -262,5 +271,6 @@ export const {
   setCurrentModule,
   addResumeModule,
   changeModuleOrder,
+  changeModuleDetailOrder,
 } = resumeSlice.actions;
 export default resumeSlice.reducer;

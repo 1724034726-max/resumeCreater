@@ -13,15 +13,15 @@ export function buildResumeModule(module: any) {
     content: [],
   };
 }
-export function changeModuleOrder(
-  moduleList: any[],
+export function changeOrder(
+  dataList: any[],
   draggedIndex: number,
   dragOverIndex: number
 ) {
-  const newModuleList = [...moduleList];
-  const [draggedItem] = newModuleList.splice(draggedIndex, 1);
-  newModuleList.splice(dragOverIndex, 0, draggedItem);
-  return newModuleList;
+  const newDataList = [...dataList];
+  const [draggedItem] = newDataList.splice(draggedIndex, 1);
+  newDataList.splice(dragOverIndex, 0, draggedItem);
+  return newDataList;
 }
 export function formatResumeModuleDetail(moduleDetail: ContentItem) {
   return Object.keys(moduleDetail).reduce(
